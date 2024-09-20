@@ -1,65 +1,105 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/src/components/colors.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/src/components/typography.dart';
+import 'package:portfolio/src/controllers/theme/controller/theme_notifier_controller.dart';
+import 'package:provider/provider.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
-class IamSection extends StatelessWidget {
+class IamSection extends StatefulWidget {
   const IamSection({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * .2),
-      child:   Column(
-        crossAxisAlignment: CrossAxisAlignment.start,  
-        mainAxisAlignment: MainAxisAlignment.center,   
-        children: [
-      const Text(
-        'Hi,\nI\'m Wagner.',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 60,
-          color: textPrimary,
-          fontFamily: fontFamily,
-        ),
-      ),
-      const SizedBox(height: 8),  // Espaçamento entre os textos
-      const Text(
-        'Develop | Others | Outhers',
-        style: TextStyle(
-          fontSize: 20,
-          color: Colors.black,
-        ),
-      ),
-      const SizedBox(height: 8),  // Espaçamento entre os textos
-      const Text(
-        'sdasdsadsadsadsa asdasdasdasdsadasd asd asdasdsadasd asaqdasdasdasda sasdasdasdsadas dasd',
-        softWrap: true,
-        style: TextStyle(
-          fontSize: 20,
-          color: textPrimary,
-          fontFamily: fontFamily,
-          fontWeight: FontWeight.w300,
-        ),
-      ),
+  State<IamSection> createState() => _IamSectionState();
+}
 
-       const SizedBox(height: 8),  // Espaçamento entre os textos
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.center,  
-        mainAxisAlignment: MainAxisAlignment.start,   
-        children: [
-        TextButton(onPressed:() {}, child:  Text('GitHub', style: btnStyle(),)),
-        const Text('/'),
-        TextButton(onPressed:() {}, child:  Text('GitHub',  style: btnStyle(),)),
-        const Text('/'),
-        TextButton(onPressed:() {}, child:  Text('GitHub',  style: btnStyle(),))
-      ],)
-        ],
-      ),
-    );
-
+class _IamSectionState extends State<IamSection> {
+  bool isDarkMode(BuildContext context) {
+    //return context.read<ThemeNotifierController>().getThemeIsDark();
+    return Provider.of<ThemeNotifierController>(context).themeMode ==
+        ThemeMode.dark;
   }
 
-  TextStyle btnStyle() => const TextStyle(fontSize: 16, fontFamily: fontFamily, color: primary);
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,     
+      child: MaxWidthBox(maxWidth: 1200,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 38),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height: MediaQuery.of(context).size.height * .15),
+              Text(
+                "Hi, I'm Wagner",
+                style:
+                    isDarkMode(context) ? titleDarkTextStyle : subTitleLightTextStyle,
+              ),
+              Text(
+                "A fullstack Developer",
+                style: isDarkMode(context)
+                    ? subTitleDarkTextStyle
+                    : textLightTextStyle,
+              ),
+              const SizedBox(height: 40),
+              Flexible(
+                child: Text(
+                  'enjoy solving complex problems. Frequently praised as detail-oriented by my peers, I can be relied upon to help your company achieve its goals by providing sustainable and scalable solutions.',
+                  softWrap: true,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ),
+              const SizedBox(height: 20),
+              gitHubAndLinkedin()
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Row gitHubAndLinkedin() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        IconButton(
+          icon: const FaIcon(
+            FontAwesomeIcons.github,
+            size: 40,
+          ),
+          onPressed: () {
+            _launchURL('https://github.com/wagnervf');
+          },
+          tooltip: 'GitHub',
+        ),
+        const SizedBox(width: 20),
+        IconButton(
+          icon: const FaIcon(
+            FontAwesomeIcons.linkedin,
+            size: 40,
+          ),
+          onPressed: () {
+            _launchURL('https://linkedin.com/in/your-profile');
+          },
+          tooltip: 'LinkedIn',
+        ),
+      ],
+    );
+  }
+
+  TextStyle btnStyle() => const TextStyle(
+      fontSize: 16, fontFamily: fontFamily, color: Colors.white);
+
+  void _launchURL(String url) async {
+    Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch $url';
+    }
+  }
 }

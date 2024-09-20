@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeNotifierController with ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.light;
+  ThemeMode _themeMode = ThemeMode.dark;
 
   ThemeNotifierController() {
     _loadTheme();
@@ -26,6 +26,13 @@ class ThemeNotifierController with ChangeNotifier {
       _themeMode = ThemeMode.light;
       prefs.setString('themeMode', 'light');
     }
+    getThemeIsDark();
     notifyListeners();
+  }
+
+  bool getThemeIsDark(){
+     notifyListeners();
+     return _themeMode == ThemeMode.dark;
+     
   }
 }

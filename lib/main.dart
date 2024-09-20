@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/src/components/typography.dart';
 import 'package:portfolio/src/controllers/theme/controller/theme_notifier_controller.dart';
 import 'package:portfolio/src/pages/site_page.dart';
 import 'package:provider/provider.dart';
-
+import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeNotifierController(),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -19,27 +20,46 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeNotifierController>(
-      builder: (context, themeNotifier, child) {
-        return MaterialApp(
-          title: 'Flutter Theme Switch',
-          theme: _buildLightTheme(),
-          darkTheme: _buildDarkTheme(),
-          themeMode: themeNotifier.themeMode, // Usa o tema atual
-          home: const SitePage(),
-        );
-      },
-    );
+        builder: (context, themeNotifier, child) {
+      return MaterialApp(
+        title: 'Wagner Freiria Portfolio',
+        theme: buildLightTheme(),
+        darkTheme: buildDarkTheme(),
+        themeMode: themeNotifier.themeMode,
+        home: const SitePage(),
+        builder: (context, child) => ResponsiveBreakpoints.builder(
+          child: child!,
+          breakpoints: [
+            const Breakpoint(start: 0, end: 450, name: MOBILE),
+            const Breakpoint(start: 451, end: 800, name: TABLET),
+            const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+            const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+          ],
+        ),
+        debugShowCheckedModeBanner: false,
+      );
+    });
   }
 }
 
-// Definir tema claro
-ThemeData _buildLightTheme() {
+ThemeData buildLightTheme() {
   return ThemeData(
+    useMaterial3: true,
     primaryColor: Colors.blue,
     scaffoldBackgroundColor: Colors.white,
     textTheme: const TextTheme(
-      displayLarge: TextStyle(color: Colors.blue, fontSize: 32),
-      bodyLarge: TextStyle(color: Colors.black87),
+      displayLarge: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 60,
+        color: Colors.black,
+        fontFamily: fontFamily,
+      ),
+      bodyLarge: TextStyle(
+        fontSize: 20,
+        color: Colors.black87,
+        fontFamily: fontFamily,
+        fontWeight: FontWeight.w300,
+      ),
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.white,
@@ -53,13 +73,24 @@ ThemeData _buildLightTheme() {
 }
 
 // Definir tema escuro
-ThemeData _buildDarkTheme() {
+ThemeData buildDarkTheme() {
   return ThemeData(
-    primaryColor: Colors.black,
-    scaffoldBackgroundColor: Colors.black87,
+    useMaterial3: true,
+    primaryColor: Colors.white,
+    scaffoldBackgroundColor: const Color.fromARGB(255, 8, 0, 24),
     textTheme: const TextTheme(
-      displayLarge: TextStyle(color: Colors.white, fontSize: 32),
-      bodyLarge: TextStyle(color: Colors.white70),
+      displayLarge: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 60,
+        color: Colors.white,
+        fontFamily: fontFamily,
+      ),
+      bodyLarge: TextStyle(
+        fontSize: 20,
+        color: Colors.white70,
+        fontFamily: fontFamily,
+        fontWeight: FontWeight.w300,
+      ),
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.black,

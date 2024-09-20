@@ -1,12 +1,12 @@
-import 'package:portfolio/src/components/circle_animation.dart';
+import 'package:portfolio/src/components/typography.dart';
+import 'package:portfolio/src/pages/skills_page.dart';
 import 'package:portfolio/src/components/icon_change_theme.dart';
-import 'package:portfolio/src/pages/about_section.dart';
-import 'package:portfolio/src/pages/home_section.dart';
+import 'package:portfolio/src/pages/home_gif_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:portfolio/src/pages/iam_section.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-
 
 class SitePage extends StatefulWidget {
   const SitePage({super.key});
@@ -17,13 +17,10 @@ class SitePage extends StatefulWidget {
 
 class _SitePageState extends State<SitePage> {
   final ItemScrollController _scrollController = ItemScrollController();
-  final List<String> _sections = ['Home', 'Sobre'];
-  bool _isMenuOpen = false;
-
+  final List<String> _sections = ['Home', 'About', 'Profile'];
+  //bool _isMenuOpen = false;
   @override
   Widget build(BuildContext context) {
-    bool isDesktop = MediaQuery.of(context).size.width > 800;
-
     return Scaffold(
       appBar: AppBar(
         title: const Row(
@@ -32,26 +29,23 @@ class _SitePageState extends State<SitePage> {
             Text('W.F'),
           ],
         ),
-        leading: isDesktop ? null : IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {
-            setState(() {
-              _isMenuOpen = !_isMenuOpen;
-            });
-          },
-        ),
-        actions: isDesktop ? _buildMenuItems() : null,
+        actions: ResponsiveBreakpoints.of(context).isDesktop
+            ? _buildMenuItems()
+            : null,
       ),
-      drawer: !isDesktop && _isMenuOpen ? _buildDrawer() : null,
       body: ScrollablePositionedList.builder(
         itemCount: _sections.length,
         itemScrollController: _scrollController,
         itemBuilder: (context, index) {
-          return _buildSection(index, isDesktop);
+          return _buildSection(index);
         },
       ),
     );
   }
+
+  // bool isDarkMode(BuildContext context) {
+  //   return context.read<ThemeNotifierController>().getThemeIsDark();
+  // }
 
   // Menu em modo desktop
   List<Widget> _buildMenuItems() {
@@ -68,27 +62,6 @@ class _SitePageState extends State<SitePage> {
     }).toList();
   }
 
-  // Menu em modo mobile (Drawer)
-  Drawer _buildDrawer() {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: _sections.map((section) {
-          return ListTile(
-            title: Text(section),
-            onTap: () {
-              _scrollToSection(_sections.indexOf(section));
-              setState(() {
-                _isMenuOpen = false;
-              });
-              Navigator.pop(context);
-            },
-          );
-        }).toList(),
-      ),
-    );
-  }
-
   // Função para rolar até a secção específica
   void _scrollToSection(int index) {
     _scrollController.scrollTo(
@@ -99,38 +72,57 @@ class _SitePageState extends State<SitePage> {
   }
 
   // Construção das secções
-  Widget _buildSection(int index, bool isDesktop) {
+  Widget _buildSection(
+    int index,
+  ) {
     switch (index) {
       case 0:
-        return isDesktop
-            ? const Row(
-                children: [
-                  Expanded(child: IamSection()),
-                  Expanded(child: CircleAnimation()), // Simulando duas colunas
-                ],
-              )
-            : const Column(
-                children: [
-                  IamSection(),
-                  SizedBox(height: 16),
-                  CircleAnimation(),
-                ],
-              );
+        return //pageHeader(allIcons, allIconsHover);
+
+            ResponsiveBreakpoints.of(context).largerThan(TABLET)
+                ? Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(child: IamSection()),
+                          Expanded(child: HomeGifWidget()),
+                        ],
+                      ),
+                      Positioned(
+                        bottom: 100,
+                        left: 0,
+                        right: 0,
+                        child: Center(
+                          child: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.keyboard_double_arrow_down,
+                                size: 50,
+                              )),
+                        ),
+                      ),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      const IamSection(),
+                      const SizedBox(height: 16),
+                      //HomeGifWidget(),
+
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.arrow_circle_down_outlined))
+                    ],
+                  );
+
       case 1:
-        return isDesktop
-            ? const Row(
-                children: [
-                  Expanded(child: AboutSection()),
-                  Expanded(child: AboutSection()),
-                ],
-              )
-            : const Column(
-                children: [
-                  AboutSection(),
-                  SizedBox(height: 16),
-                  AboutSection(),
-                ],
-              );
+        return const SkillsPage();
+
+      case 2:
+        return Container(height: 600, color: Colors.blue[200]);
       default:
         return Container();
     }
