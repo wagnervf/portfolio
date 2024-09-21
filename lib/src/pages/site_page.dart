@@ -1,7 +1,5 @@
-import 'package:portfolio/src/components/typography.dart';
 import 'package:portfolio/src/pages/skills_page.dart';
 import 'package:portfolio/src/components/icon_change_theme.dart';
-import 'package:portfolio/src/pages/home_gif_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:portfolio/src/pages/iam_section.dart';
@@ -83,14 +81,7 @@ class _SitePageState extends State<SitePage> {
                 ? Stack(
                     alignment: Alignment.center,
                     children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(child: IamSection()),
-                          Expanded(child: HomeGifWidget()),
-                        ],
-                      ),
+                      IamSection(),
                       Positioned(
                         bottom: 100,
                         left: 0,
