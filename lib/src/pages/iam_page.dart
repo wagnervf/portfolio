@@ -7,65 +7,101 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
-class IamSection extends StatefulWidget {
-  const IamSection({
+class IamPage extends StatefulWidget {
+  const IamPage({
     super.key,
   });
 
   @override
-  State<IamSection> createState() => _IamSectionState();
+  State<IamPage> createState() => _IamPageState();
 }
 
-class _IamSectionState extends State<IamSection> {
+class _IamPageState extends State<IamPage> {
   bool isDarkMode(BuildContext context) {
     //return context.read<ThemeNotifierController>().getThemeIsDark();
     return Provider.of<ThemeNotifierController>(context).themeMode ==
         ThemeMode.dark;
   }
 
+  EdgeInsets blockMargin = const EdgeInsets.fromLTRB(10, 0, 10, 32);
+  Color border = const Color(0x20000000);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      padding: const EdgeInsets.all(60),
-      child: MaxWidthBox(
-        maxWidth: 1200,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+    bool smallerThan = ResponsiveBreakpoints.of(context).smallerThan(DESKTOP);
+    return MaxWidthBox(
+      maxWidth: 1200,
+      child: Container(
+        width: double.infinity,
+        padding:
+            smallerThan ? const EdgeInsets.all(15) : const EdgeInsets.all(60),
+        child: ResponsiveRowColumn(
+          layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
+              ? ResponsiveRowColumnType.COLUMN
+              : ResponsiveRowColumnType.ROW,
+          rowCrossAxisAlignment: CrossAxisAlignment.start,
+          columnCrossAxisAlignment: CrossAxisAlignment.center,
+          columnMainAxisSize: MainAxisSize.min,
+          rowPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          columnPadding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+          columnSpacing: 30,
+          rowSpacing: 30,
           children: [
-            Expanded(child: iAm(context)),
-            Expanded(child: imageIam(context)),
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.tight,
+              child: iAmWidget(context)
+            ),
+      
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.tight,
+              child: imageIAmWidget(context)
+            ),
           ],
         ),
       ),
     );
   }
 
-  Column iAm(BuildContext context) {
+  Column iAmWidget(BuildContext context) {
+  //  bool smallerThan = ResponsiveBreakpoints.of(context).smallerThan(DESKTOP);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBox(height: 60),
+      //  smallerThan ? const SizedBox(height: 10) : const SizedBox(height: 60),
         Text(
-          "Hi",
+          "Hi,",
           style:
               isDarkMode(context) ? titleDarkTextStyle : subTitleLightTextStyle,
         ),
-
         TextAnimator(
-               "I'm Wagner Freiria",
-              style: subTitleLightTextStyle,
-              incomingEffect: WidgetTransitionEffects.incomingScaleDown(
-                      duration: const Duration(milliseconds: 600)),
-            ),
+          "I'm Wagner Freiria",
+          style: subTitleLightTextStyle,
+          incomingEffect: WidgetTransitionEffects.incomingScaleDown(
+              duration: const Duration(milliseconds: 600)),
+        ),
+        textFullStack(),
+        const SizedBox(height: 20),
+        Flexible(
+          child: Text(
+            'enjoy solving complex problems. Frequently praised as detail-oriented by my peers, I can be relied upon to help your company achieve its goals by providing sustainable and scalable solutions.',
+            softWrap: true,
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+        ),
+        const SizedBox(height: 20),
+        gitHubAndLinkedin()
+      ],
+    );
+  }
 
-            TextAnimator(
-              'A fullstack Developer',
-                incomingEffect: WidgetTransitionEffects(
+  TextAnimator textFullStack() {
+    return TextAnimator(
+      'A fullstack Developer',
+      incomingEffect: WidgetTransitionEffects(
           offset: const Offset(-60, 0),
           blur: const Offset(10, 0),
           curve: Curves.easeInOut,
@@ -82,37 +118,21 @@ class _IamSectionState extends State<IamSection> {
       spaceDelay: const Duration(milliseconds: 300),
       characterDelay: const Duration(milliseconds: 60),
       maxLines: 3,
-      
-            ),
-        // Text(
-        //   "A fullstack Developer",
-        //   style:
-        //       isDarkMode(context) ? subTitleDarkTextStyle : textLightTextStyle,
-        // ),
-        const SizedBox(height: 40),
-        Flexible(
-          child: Text(
-            'enjoy solving complex problems. Frequently praised as detail-oriented by my peers, I can be relied upon to help your company achieve its goals by providing sustainable and scalable solutions.',
-            softWrap: true,
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-        ),
-        const SizedBox(height: 20),
-        gitHubAndLinkedin()
-      ],
     );
   }
 
-   imageIam(BuildContext context) {
-    return Container(
-     // color: Colors.amber,
+  imageIAmWidget(BuildContext context) {
+      bool smallerThan = ResponsiveBreakpoints.of(context).smallerThan(DESKTOP);
+    return smallerThan ? const SizedBox.shrink() : Container(
+      // color: Colors.amber,
       alignment: Alignment.topCenter,
-      padding: EdgeInsets.only(top: 60),
+      padding: const EdgeInsets.only(top: 60),
       child: Image.asset(
         'assets/images/codding.png',
-        width: 400,
-        height: 400,
+        width:  300,
+        height: 300,
         fit: BoxFit.fill,
+
       ),
     );
   }

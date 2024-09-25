@@ -1,8 +1,9 @@
+import 'package:portfolio/src/pages/features_pages.dart';
 import 'package:portfolio/src/pages/skills_page.dart';
 import 'package:portfolio/src/components/icon_change_theme.dart';
 
 import 'package:flutter/material.dart';
-import 'package:portfolio/src/pages/iam_section.dart';
+import 'package:portfolio/src/pages/iam_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -60,6 +61,12 @@ class _SitePageState extends State<SitePage> {
     }).toList();
   }
 
+  List<Condition<BoxConstraints>> blockWidthConstraints = [
+  const Condition.equals(name: MOBILE, value: BoxConstraints(maxWidth: 600)),
+  const Condition.equals(name: TABLET, value: BoxConstraints(maxWidth: 700)),
+  const Condition.largerThan(name: TABLET, value: BoxConstraints(maxWidth: 1280)),
+];
+
   // Função para rolar até a secção específica
   void _scrollToSection(int index) {
     _scrollController.scrollTo(
@@ -75,47 +82,50 @@ class _SitePageState extends State<SitePage> {
   ) {
     switch (index) {
       case 0:
-        return //pageHeader(allIcons, allIconsHover);
+        return IamPage();
+      //   ResponsiveConstraints(
+        //  conditionalConstraints: blockWidthConstraints, child: const IamPage());
+            // ResponsiveBreakpoints.of(context).largerThan(TABLET)
+            //     ? Stack(
+            //         alignment: Alignment.center,
+            //         children: [
+            //           IamPage(),
+            //           Positioned(
+            //             bottom: 100,
+            //             left: 0,
+            //             right: 0,
+            //             child: Center(
+            //               child: IconButton(
+            //                   onPressed: () {},
+            //                   icon: const Icon(
+            //                     Icons.keyboard_double_arrow_down,
+            //                     size: 50,
+            //                   )),
+            //             ),
+            //           ),
+            //         ],
+            //       )
+            //     : Column(
+            //         children: [
+            //           const IamPage(),
+            //           const SizedBox(height: 16),
+            //           //HomeGifWidget(),
 
-            ResponsiveBreakpoints.of(context).largerThan(TABLET)
-                ? Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      IamSection(),
-                      Positioned(
-                        bottom: 100,
-                        left: 0,
-                        right: 0,
-                        child: Center(
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.keyboard_double_arrow_down,
-                                size: 50,
-                              )),
-                        ),
-                      ),
-                    ],
-                  )
-                : Column(
-                    children: [
-                      const IamSection(),
-                      const SizedBox(height: 16),
-                      //HomeGifWidget(),
-
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.arrow_circle_down_outlined))
-                    ],
-                  );
+            //           IconButton(
+            //               onPressed: () {},
+            //               icon: const Icon(Icons.arrow_circle_down_outlined))
+            //         ],
+            //       );
 
       case 1:
         return const SkillsPage();
 
       case 2:
-        return Container(height: 600, color: Colors.blue[200]);
+        return Features();
+
       default:
-        return Container();
+        return Container(height: 600, color: Colors.blue[200]);
+
     }
   }
 }

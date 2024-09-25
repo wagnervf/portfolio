@@ -24,6 +24,7 @@ dependencies:
   widget_and_text_animator: ^1.1.5
   font_awesome_flutter:
   infinite_carousel: ^1.1.1
+  flutter_carousel_widget: ^3.0.1
 
 
 flutter_svg:

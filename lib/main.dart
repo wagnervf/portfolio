@@ -60,6 +60,13 @@ ThemeData buildLightTheme() {
         fontFamily: fontFamily,
         fontWeight: FontWeight.w300,
       ),
+
+      bodyMedium: TextStyle(
+        fontSize: 14,
+        color: Colors.black87,
+        fontFamily: fontFamily,
+        fontWeight: FontWeight.w300,
+      ),
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.white,
