@@ -39,7 +39,7 @@ class _SkillsPageState extends State<SkillsPage> {
           rowPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           columnPadding:
               const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-          columnSpacing: 30,
+          columnSpacing: 40,
           rowSpacing: 30,
           children: [
             ResponsiveRowColumnItem(
@@ -60,7 +60,7 @@ class _SkillsPageState extends State<SkillsPage> {
                   SizedBox(
                     width: 500,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: Text(
                         'Collaborate on the open source framework, contribute to the package ecosystem on pub.dev, and find help when you need it.',
                         textAlign: TextAlign.center,
@@ -96,7 +96,7 @@ class InfiniteIconList extends StatefulWidget {
 class _InfiniteIconListState extends State<InfiniteIconList> {
   List<IconAnimationModel> colorIcons = IconDataListAllIcons.iconsSvg;
   late InfiniteScrollController _controller = InfiniteScrollController();
-  
+
   final int _selectedIndex = 0;
   @override
   void initState() {
@@ -146,32 +146,33 @@ class _InfiniteIconListState extends State<InfiniteIconList> {
             itemCount: colorIcons.length,
             itemBuilder: (context, index) {
               return WidgetAnimator(
-                incomingEffect: WidgetTransitionEffects.incomingSlideInFromTop(
-                  duration: Duration(seconds: 1 + index),
-                  delay: Duration(milliseconds: 2750 + index),
-                  curve: Curves.bounceOut,
-                ),
-                child: Container(
-      width: 80,
-      height: 80,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.black87,
-      ),
-      child: Align(
-        alignment: Alignment.center,
-        child:Image.asset(
-           fit: BoxFit.contain,
-          width: 80 * 0.5,
-          height: 80 * 0.5,
-                        colorIcons[index].path!,
+                  incomingEffect:
+                      WidgetTransitionEffects.incomingSlideInFromTop(
+                    duration: Duration(seconds: 1 + index),
+                    delay: Duration(milliseconds: 2750 + index),
+                    curve: Curves.bounceOut,
+                  ),
+                  child: Container(
+                    width: 80,
+                    height: 80,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.black87,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Image.asset(
+                          fit: BoxFit.contain,
+                          width: 80 * 0.5,
+                          height: 80 * 0.5,
+                          colorIcons[index].path!,
+                        ),
                       ),
-        
-       
-      ),));
-    
-                
-                
+                    ),
+                  ));
+
               //   SizedBox(
               //     width: 40,
               //     height: 40,

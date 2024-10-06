@@ -34,7 +34,7 @@ class _IamPageState extends State<IamPage> {
       child: Container(
         width: double.infinity,
         padding:
-            smallerThan ? const EdgeInsets.all(15) : const EdgeInsets.all(60),
+            smallerThan ? const EdgeInsets.all(15) : const EdgeInsets.all(30),
         child: ResponsiveRowColumn(
           layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
               ? ResponsiveRowColumnType.COLUMN

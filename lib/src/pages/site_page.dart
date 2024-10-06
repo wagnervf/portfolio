@@ -1,35 +1,58 @@
-import 'package:portfolio/src/pages/features_pages.dart';
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
+import 'package:portfolio/src/components/icon_change_language.dart';
+import 'package:portfolio/src/components/utils.dart';
+import 'package:portfolio/src/controllers/theme/controller/language_notifier_controller.dart';
+import 'package:portfolio/src/pages/courses_section.dart';
+import 'package:portfolio/src/pages/graduation_page.dart';
 import 'package:portfolio/src/pages/skills_page.dart';
 import 'package:portfolio/src/components/icon_change_theme.dart';
 
 import 'package:flutter/material.dart';
 import 'package:portfolio/src/pages/iam_page.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class SitePage extends StatefulWidget {
+
   const SitePage({super.key});
 
+
   @override
+  // ignore: library_private_types_in_public_api
   _SitePageState createState() => _SitePageState();
 }
 
 class _SitePageState extends State<SitePage> {
+
+
+
   final ItemScrollController _scrollController = ItemScrollController();
   final List<String> _sections = ['Home', 'About', 'Profile'];
   //bool _isMenuOpen = false;
+
+
+
+  
   @override
   Widget build(BuildContext context) {
+
+    
+    
     return Scaffold(
       appBar: AppBar(
         title: const Row(
           children: [
             IconChangeTheme(),
+            IconChangeLanguage(),
             Text('W.F'),
           ],
         ),
         actions: ResponsiveBreakpoints.of(context).isDesktop
             ? _buildMenuItems()
+              
             : null,
       ),
       body: ScrollablePositionedList.builder(
@@ -42,9 +65,7 @@ class _SitePageState extends State<SitePage> {
     );
   }
 
-  // bool isDarkMode(BuildContext context) {
-  //   return context.read<ThemeNotifierController>().getThemeIsDark();
-  // }
+
 
   // Menu em modo desktop
   List<Widget> _buildMenuItems() {
@@ -82,50 +103,20 @@ class _SitePageState extends State<SitePage> {
   ) {
     switch (index) {
       case 0:
-        return IamPage();
-      //   ResponsiveConstraints(
-        //  conditionalConstraints: blockWidthConstraints, child: const IamPage());
-            // ResponsiveBreakpoints.of(context).largerThan(TABLET)
-            //     ? Stack(
-            //         alignment: Alignment.center,
-            //         children: [
-            //           IamPage(),
-            //           Positioned(
-            //             bottom: 100,
-            //             left: 0,
-            //             right: 0,
-            //             child: Center(
-            //               child: IconButton(
-            //                   onPressed: () {},
-            //                   icon: const Icon(
-            //                     Icons.keyboard_double_arrow_down,
-            //                     size: 50,
-            //                   )),
-            //             ),
-            //           ),
-            //         ],
-            //       )
-            //     : Column(
-            //         children: [
-            //           const IamPage(),
-            //           const SizedBox(height: 16),
-            //           //HomeGifWidget(),
-
-            //           IconButton(
-            //               onPressed: () {},
-            //               icon: const Icon(Icons.arrow_circle_down_outlined))
-            //         ],
-            //       );
-
+        return const GraduationPage();
       case 1:
-        return const SkillsPage();
+        return CoursesSection();
+      
+      // case 1:
+      //   return const SkillsPage();
 
-      case 2:
-        return Features();
+      // case 2:
+      //   return Features();
 
       default:
         return Container(height: 600, color: Colors.blue[200]);
 
     }
   }
+
 }

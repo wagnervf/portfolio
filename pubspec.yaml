@@ -11,7 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.18.1
   cupertino_icons: ^1.0.6
   scrollable_positioned_list: ^0.3.5
   rive_animated_icon: ^2.0.0
@@ -29,6 +31,7 @@ dependencies:
 
 flutter_svg:
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -39,6 +42,7 @@ flutter:
   assets:
     - assets/images/svg/
     - assets/images/
+    - assets/translations/
   fonts:
     - family: Google Sans
       fonts:
