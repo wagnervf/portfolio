@@ -4,5 +4,13 @@
     "background": "Minha Formação",
     "campusPP": "Faculdades Uniderp de Ponta Porã",
     "campusUEL": "Universidade Estadual de Londrina - UEL",
-    "campusUFMS": "Universidade Federal do Mato Grosso do Sul - UFMS"
+    "campusUFMS": "Universidade Federal do Mato Grosso do Sul - UFMS",
+    "bacharel": "Bacharel em Ciências da Computação",
+    "specialization" : "Especialização em Redes de Computadores e Comunicação de Dados",
+    "master": "Mestrado em Computação Aplicada",
+    "description_bacharel" : "O curso abrange um amplo campo da computação como desenvolvimento de sistemas, redes de computadores, algoritmos, hardware e outros aspectos de tecnologia.",
+    "description_specialization" : "Na especialização, busquei aperfeiçoar meus conhecimentos em redes de computadores e comunicação de dados.",
+    "description_master" : "Em meu Mestrado mudei completamente de área e focando totalmente em desenvolvimento, trabalhando com alguns frameworks e linguagens diferentes como Vue.js e Node.js.",
+    "courses" : "Cursos centrados no desenvolvimento",
+    "description_courses" : "As plataformas mais relevantes dos cursos de desenvolvimento que fiz ou estou fazendo atualmente"
   }

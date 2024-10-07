@@ -20,24 +20,25 @@ ThemeData buildLightTheme() {
           fontWeight: FontWeight.w300,
         ),
         titleMedium: TextStyle(
-            fontFamily: 'Google Sans',
-            letterSpacing: 0,
-            fontSize: 44, 
-            color: Colors.black87, 
-            height: 1.2,
-            ),
-
-            titleSmall: TextStyle(
-            fontFamily: 'Google Sans',
-            letterSpacing: 0,
-            fontSize: 24, 
-            color: Colors.black87,
-            fontWeight: FontWeight.w700,
-            height: 1.2,
-            ),
-        bodyMedium: TextStyle(
-          fontSize: 14,
+          fontFamily: 'Google Sans',
+          letterSpacing: 0,
+          fontSize: 44,
           color: Colors.black87,
+          height: 1.2,
+        ),
+        titleSmall: TextStyle(
+          fontFamily: 'Google Sans',
+          letterSpacing: 0,
+          fontSize: 24,
+          color: Colors.black87,
+          fontWeight: FontWeight.w700,
+          height: 1.2,
+        ),
+       
+        bodyMedium: TextStyle(
+          fontSize: 16,
+          color: Colors.black87,
+          height: 1.5,
           fontFamily: fontFamily,
           fontWeight: FontWeight.w300,
         ),
@@ -52,8 +53,6 @@ ThemeData buildLightTheme() {
     ),
   );
 }
-
-
 
 // Definir tema escuro
 ThemeData buildDarkTheme() {

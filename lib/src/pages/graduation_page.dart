@@ -30,7 +30,7 @@ class _GraduationPageState extends State<GraduationPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(28.0),
                 child: Text(
                   notifier.localizedStrings['background'] ?? '',
                   style: subTitleLightTextStyle,
@@ -66,20 +66,22 @@ class _GraduationPageState extends State<GraduationPage> {
                         const SizedBox(
                           height: 10,
                         ),
-                        Text(
-                          notifier.localizedStrings['campusPP'] ?? '',
+                        Text(notifier.localizedStrings['campusPP'] ?? '',
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.labelLarge),
                         const SizedBox(
                           height: 20,
                         ),
-                        Text("Bachelor's degree in computer science",
+                        Text(notifier.localizedStrings['bacharel'] ?? '',
                             style: Theme.of(context).textTheme.titleSmall,
                             textAlign: TextAlign.center),
-                        const Padding(
-                          padding: EdgeInsets.all(18.0),
+                        Padding(
+                          padding: const EdgeInsets.all(18.0),
                           child: Text(
-                              "The course covers a broad field of computing such as systems development, computer networks, algorithms, hardware and other aspects of technology.",
+                              notifier.localizedStrings[
+                                      'description_bacharel'] ??
+                                  '',
+                                   style: Theme.of(context).textTheme.bodyMedium,
                               textAlign: TextAlign.center),
                         ),
                       ],
@@ -101,21 +103,22 @@ class _GraduationPageState extends State<GraduationPage> {
                         const SizedBox(
                           height: 10,
                         ),
-                        Text(
-                          notifier.localizedStrings['campusUEL'] ?? '',
+                        Text(notifier.localizedStrings['campusUEL'] ?? '',
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.labelLarge),
                         const SizedBox(
                           height: 20,
                         ),
-                        Text(
-                            "Specialization in Computer Networks and Data Communications in 2012",
+                        Text(notifier.localizedStrings['specialization'] ?? '',
                             style: Theme.of(context).textTheme.titleSmall,
                             textAlign: TextAlign.center),
-                        const Padding(
-                          padding: EdgeInsets.all(18.0),
+                        Padding(
+                          padding: const EdgeInsets.all(18.0),
                           child: Text(
-                              "In the specialization, I sought to improve my knowledge of computer networks and data communication.",
+                              notifier.localizedStrings[
+                                      'description_specialization'] ??
+                                  '',
+                                  style: Theme.of(context).textTheme.bodyMedium,
                               textAlign: TextAlign.center),
                         ),
                       ],
@@ -145,13 +148,15 @@ class _GraduationPageState extends State<GraduationPage> {
                         const SizedBox(
                           height: 20,
                         ),
-                        Text("Master of Science in Applied Computing 2023",
+                        Text(
+                           notifier.localizedStrings['master'] ?? '',
                             style: Theme.of(context).textTheme.titleSmall,
                             textAlign: TextAlign.center),
-                        const Padding(
-                          padding: EdgeInsets.all(18.0),
+                         Padding(
+                          padding: const EdgeInsets.all(18.0),
                           child: Text(
-                              "In my Master's degree I changed areas completely and focused entirely on development, working with a few different frameworks and languages such as Vue.js and Node.js.",
+                            notifier.localizedStrings['description_master'] ?? '',
+                            style: Theme.of(context).textTheme.bodyMedium,
                               textAlign: TextAlign.center),
                         ),
                       ],

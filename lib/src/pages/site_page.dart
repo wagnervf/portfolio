@@ -43,6 +43,7 @@ class _SitePageState extends State<SitePage> {
     
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 60,
         title: const Row(
           children: [
             IconChangeTheme(),

@@ -4,7 +4,15 @@
     "background": "My Background",
     "campusPP": "Uniderp Colleges in Ponta Porã",
     "campusUEL": "Londrina State College - UEL",
-    "campusUFMS": "Federal University of Mato Grosso do Sul"
+    "campusUFMS": "Federal University of Mato Grosso do Sul",
+    "bacharel": "Bachelor of Computer Science",
+    "specialization" : "Specialization in Computer Networks and Data Communications",
+    "master": "Master of Science in Applied Computing ",
+    "description_bacharel" : "the course covers a broad field of computing such as systems development, computer networks, algorithms, hardware and other aspects of technology",
+    "description_specialization" : "In the specialization, I sought to improve my knowledge of computer networks and data communication.",
+    "description_master" : "In my Master's degree I changed areas completely and focused entirely on development, working with a few different frameworks and languages such as Vue.js and Node.js.",
+    "courses" : "Courses focused on development",
+    "description_courses" : "The most relevant platforms of the development courses I have taken or am currently taking"
 
 
   } 
