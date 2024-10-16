@@ -1,6 +1,11 @@
 {
-    "hello": "Hello",
+    "iam" : "I'm Wagner Freiria",
+    "hello": "Hi there,",
     "welcome": "Welcome to our website",
+    "myDescription" : "I love learning and exploring new technologies, always looking for creative solutions to solve complex problems. At the moment, I'm focused on delving deeper into Dart and Flutter, building robust and efficient applications. I've also had the opportunity to work with Laravel, CakePHP, Vue and Node.js, which has allowed me to broaden my repertoire of skills in both the backend and frontend.",
+    "fullstack" : "A fullstack Developer",
+    "mySkill" : "My Skills",
+    "skillDescription" :"Some tools and technologies with which I most identify and have experience.",
     "background": "My Background",
     "campusPP": "Uniderp Colleges in Ponta Porã",
     "campusUEL": "Londrina State College - UEL",

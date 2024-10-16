@@ -1,6 +1,12 @@
 {
-    "hello": "Olá",
+    "iam" : "Sou o Wagner Freiria,",
+    "hello": "Olá,",
     "welcome": "Bem-vindo ao nosso site",
+    "myDescription" : "Adoro aprender e explorar novas tecnologias, sempre em busca de soluções criativas para resolver problemas complexos. No momento, estou focado em me aprofundar em Dart e Flutter, construindo aplicações robustas e eficientes. Além disso, já tive a oportunidade de trabalhar com Laravel, CakePHP, Vue e Node.js, o que me permitiu ampliar meu repertório de habilidades tanto no backend quanto no frontend.",
+    "fullstack" : "Desenvolvedor Fullstack",
+    "mySkill" : "Minha Habilidades",
+    "skillDescription" : "Algumas das ferramentas e tecnologias com as quais mais me identifico e tenho experiência.",
+
     "background": "Minha Formação",
     "campusPP": "Faculdades Uniderp de Ponta Porã",
     "campusUEL": "Universidade Estadual de Londrina - UEL",

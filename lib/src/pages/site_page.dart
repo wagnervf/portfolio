@@ -1,24 +1,16 @@
-import 'dart:convert';
-
-import 'package:flutter/services.dart';
+import 'package:portfolio/src/components/footer.dart';
 import 'package:portfolio/src/components/icon_change_language.dart';
-import 'package:portfolio/src/components/utils.dart';
-import 'package:portfolio/src/controllers/theme/controller/language_notifier_controller.dart';
-import 'package:portfolio/src/pages/courses_section.dart';
-import 'package:portfolio/src/pages/graduation_page.dart';
-import 'package:portfolio/src/pages/skills_page.dart';
 import 'package:portfolio/src/components/icon_change_theme.dart';
-
 import 'package:flutter/material.dart';
-import 'package:portfolio/src/pages/iam_page.dart';
-import 'package:provider/provider.dart';
+import 'package:portfolio/src/pages/courses_section.dart';
+import 'package:portfolio/src/pages/graduation_section.dart';
+import 'package:portfolio/src/pages/iam_section.dart';
+import 'package:portfolio/src/pages/skills_section.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class SitePage extends StatefulWidget {
-
   const SitePage({super.key});
-
 
   @override
   // ignore: library_private_types_in_public_api
@@ -26,21 +18,12 @@ class SitePage extends StatefulWidget {
 }
 
 class _SitePageState extends State<SitePage> {
-
-
-
   final ItemScrollController _scrollController = ItemScrollController();
-  final List<String> _sections = ['Home', 'About', 'Profile'];
+  final List<String> _sections = ['Home', 'About', 'My Background', 'Courses', 'Footer'];
   //bool _isMenuOpen = false;
 
-
-
-  
   @override
   Widget build(BuildContext context) {
-
-    
-    
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 60,
@@ -48,12 +31,14 @@ class _SitePageState extends State<SitePage> {
           children: [
             IconChangeTheme(),
             IconChangeLanguage(),
-            Text('W.F'),
+            Text(
+              'W.F',
+              style: TextStyle(fontSize: 12),
+            ),
           ],
         ),
         actions: ResponsiveBreakpoints.of(context).isDesktop
             ? _buildMenuItems()
-              
             : null,
       ),
       body: ScrollablePositionedList.builder(
@@ -65,8 +50,6 @@ class _SitePageState extends State<SitePage> {
       ),
     );
   }
-
-
 
   // Menu em modo desktop
   List<Widget> _buildMenuItems() {
@@ -84,10 +67,11 @@ class _SitePageState extends State<SitePage> {
   }
 
   List<Condition<BoxConstraints>> blockWidthConstraints = [
-  const Condition.equals(name: MOBILE, value: BoxConstraints(maxWidth: 600)),
-  const Condition.equals(name: TABLET, value: BoxConstraints(maxWidth: 700)),
-  const Condition.largerThan(name: TABLET, value: BoxConstraints(maxWidth: 1280)),
-];
+    const Condition.equals(name: MOBILE, value: BoxConstraints(maxWidth: 600)),
+    const Condition.equals(name: TABLET, value: BoxConstraints(maxWidth: 700)),
+    const Condition.largerThan(
+        name: TABLET, value: BoxConstraints(maxWidth: 1280)),
+  ];
 
   // Função para rolar até a secção específica
   void _scrollToSection(int index) {
@@ -104,20 +88,17 @@ class _SitePageState extends State<SitePage> {
   ) {
     switch (index) {
       case 0:
-        return const GraduationPage();
+        return const IamSection();
       case 1:
-        return CoursesSection();
-      
-      // case 1:
-      //   return const SkillsPage();
-
-      // case 2:
-      //   return Features();
-
+        return const SkillsSection();
+      case 2:
+        return const GraduationSection();
+      case 3:
+        return const CoursesSection();
+      case 4:
+        return const Footer();
       default:
-        return Container(height: 600, color: Colors.blue[200]);
-
+        return const SizedBox.shrink();
     }
   }
-
 }

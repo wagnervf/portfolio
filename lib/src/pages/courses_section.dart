@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/src/components/typography.dart';
 import 'package:portfolio/src/controllers/theme/controller/language_notifier_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-// ignore: must_be_immutable
 class CoursesSection extends StatelessWidget {
-  CoursesSection({super.key});
+  const CoursesSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +13,8 @@ class CoursesSection extends StatelessWidget {
         return Container(
           width: double.infinity,
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 32),
-          margin: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(4),
-              border: Border.all(color: const Color(0x20000000))),
+          decoration: const BoxDecoration(
+              border: Border.symmetric(horizontal:BorderSide(  color: Colors.grey))),
           child: ResponsiveRowColumn(
             layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
                 ? ResponsiveRowColumnType.COLUMN

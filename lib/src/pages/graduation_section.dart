@@ -1,20 +1,17 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:portfolio/src/components/typography.dart';
 import 'package:portfolio/src/controllers/theme/controller/language_notifier_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 // ignore: must_be_immutable
-class GraduationPage extends StatefulWidget {
-  const GraduationPage({super.key});
+class GraduationSection extends StatefulWidget {
+  const GraduationSection({super.key});
 
   @override
-  State<GraduationPage> createState() => _GraduationPageState();
+  State<GraduationSection> createState() => _GraduationSectionState();
 }
 
-class _GraduationPageState extends State<GraduationPage> {
+class _GraduationSectionState extends State<GraduationSection> {
   EdgeInsets blockMargin = const EdgeInsets.fromLTRB(10, 0, 10, 32);
 
   Color border = const Color(0x20000000);
@@ -33,7 +30,7 @@ class _GraduationPageState extends State<GraduationPage> {
                 padding: const EdgeInsets.all(28.0),
                 child: Text(
                   notifier.localizedStrings['background'] ?? '',
-                  style: subTitleLightTextStyle,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
               ResponsiveRowColumn(
@@ -68,7 +65,7 @@ class _GraduationPageState extends State<GraduationPage> {
                         ),
                         Text(notifier.localizedStrings['campusPP'] ?? '',
                             textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.labelLarge),
+                            style: Theme.of(context).textTheme.labelSmall),
                         const SizedBox(
                           height: 20,
                         ),
@@ -105,7 +102,7 @@ class _GraduationPageState extends State<GraduationPage> {
                         ),
                         Text(notifier.localizedStrings['campusUEL'] ?? '',
                             textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.labelLarge),
+                           style: Theme.of(context).textTheme.labelSmall),
                         const SizedBox(
                           height: 20,
                         ),
@@ -144,7 +141,7 @@ class _GraduationPageState extends State<GraduationPage> {
                         ),
                         Text(notifier.localizedStrings['campusUFMS'] ?? '',
                             textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.labelLarge),
+                           style: Theme.of(context).textTheme.labelSmall),
                         const SizedBox(
                           height: 20,
                         ),
