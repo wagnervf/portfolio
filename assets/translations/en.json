@@ -7,6 +7,7 @@
     "mySkill" : "My Skills",
     "skillDescription" :"Some tools and technologies with which I most identify and have experience.",
     "background": "My Background",
+    "background_description": "My academic background",
     "campusPP": "Uniderp Colleges in Ponta Porã",
     "campusUEL": "Londrina State College - UEL",
     "campusUFMS": "Federal University of Mato Grosso do Sul",
@@ -19,5 +20,5 @@
     "courses" : "Courses focused on development",
     "description_courses" : "The most relevant platforms of the development courses I have taken or am currently taking"
 
-
+ 
   } 

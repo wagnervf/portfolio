@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/src/components/typography.dart';
+import 'package:portfolio/src/components/utils.dart';
 import 'package:portfolio/src/controllers/theme/controller/language_notifier_controller.dart';
 import 'package:portfolio/src/controllers/theme/controller/theme_notifier_controller.dart';
 import 'package:provider/provider.dart';
@@ -29,44 +30,48 @@ class _IamSectionState extends State<IamSection> {
   @override
   Widget build(BuildContext context) {
     bool smallerThan = ResponsiveBreakpoints.of(context).smallerThan(DESKTOP);
+
     return Consumer<LanguageNotifierController>(
-      builder: (context, notifier, child) {
-        return MaxWidthBox(
-          maxWidth: 1200,
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: double.infinity,
-            padding:
-                smallerThan ? const EdgeInsets.all(15) : const EdgeInsets.only(top: 20),
-            child: ResponsiveRowColumn(
-              layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
-                  ? ResponsiveRowColumnType.COLUMN
-                  : ResponsiveRowColumnType.ROW,
-              rowCrossAxisAlignment: CrossAxisAlignment.start,
-              columnCrossAxisAlignment: CrossAxisAlignment.center,
-              columnMainAxisSize: MainAxisSize.min,
-              rowPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-              columnPadding:
-                  const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-              columnSpacing: 10,
-              rowSpacing: 0,
-              children: [
-                ResponsiveRowColumnItem(
-                  rowFlex: 1,
-                  rowFit: FlexFit.tight,
-                  child: iAmWidget(context, notifier),
-                ),
-                ResponsiveRowColumnItem(
-                  rowFlex: 1,
-                  rowFit: FlexFit.tight,
-                  child: imageIAmWidget(context),
-                ),
-              ],
-            ),
+        builder: (context, notifier, child) {
+      return MaxWidthBox(
+        maxWidth: 1200,
+        child: Container(
+          //  height: Utils.islargerThanHeight(context),
+          constraints: BoxConstraints(
+            minHeight: Utils.islargerThanHeight(context),
           ),
-        );
-      }
-    );
+          width: double.infinity,
+          padding: smallerThan
+              ? const EdgeInsets.all(15)
+              : const EdgeInsets.only(top: 20),
+          child: ResponsiveRowColumn(
+            layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
+                ? ResponsiveRowColumnType.COLUMN
+                : ResponsiveRowColumnType.ROW,
+            rowCrossAxisAlignment: CrossAxisAlignment.start,
+            columnCrossAxisAlignment: CrossAxisAlignment.center,
+            columnMainAxisSize: MainAxisSize.min,
+            rowPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+            columnPadding:
+                const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            columnSpacing: 10,
+            rowSpacing: 0,
+            children: [
+              ResponsiveRowColumnItem(
+                rowFlex: 1,
+                rowFit: FlexFit.tight,
+                child: iAmWidget(context, notifier),
+              ),
+              ResponsiveRowColumnItem(
+                rowFlex: 1,
+                rowFit: FlexFit.tight,
+                child: imageIAmWidget(context),
+              ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 
   Column iAmWidget(BuildContext context, LanguageNotifierController notifier) {
@@ -92,7 +97,7 @@ class _IamSectionState extends State<IamSection> {
         const SizedBox(height: 20),
         Flexible(
           child: Text(
-             notifier.localizedStrings['myDescription'] ?? '',
+            notifier.localizedStrings['myDescription'] ?? '',
             softWrap: true,
             style: Theme.of(context).textTheme.bodyMedium,
             textAlign: TextAlign.justify,
@@ -151,7 +156,6 @@ class _IamSectionState extends State<IamSection> {
       children: [
         IconButton(
           icon: const FaIcon(
-
             FontAwesomeIcons.github,
             size: 40,
           ),

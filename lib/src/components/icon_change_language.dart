@@ -11,8 +11,8 @@ class IconChangeLanguage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LanguageNotifierController>(
-        builder: (context, notifier, child) {
+                                                    return Consumer<LanguageNotifierController>(
+                                                        builder: (context, notifier, child) {
       return Padding(
         padding: const EdgeInsets.all(5),
         child: Row(
